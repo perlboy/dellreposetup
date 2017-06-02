@@ -13,5 +13,7 @@ galaxy_info:
   - name: Ubuntu
     versions:
     - trusty
+    - precise
+    - xenial
   galaxy_tags: [Dell, firmware, OMSA, DSU]
 dependencies: []
