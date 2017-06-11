@@ -18,18 +18,3 @@
     notify:
     - start omsa
 
-  - name: Open firewall port (firewalld)
-    firewalld:
-      port: 1311/tcp
-      permanent: true
-      immediate: true
-      state: enabled
-    when: ansible_distribution_major_version == "7" and
-            not ( security_firewall is defined and not security_firewall )
-
-  # There's probably a more elegant way to do this with the 'iptables' module
-  - name: Open firewall port (iptables)
-    shell: /sbin/iptables -t filter -I INPUT -m state --state NEW -m tcp
-           -p tcp --dport 1311 -j ACCEPT
-  # shell: /sbin/iptables-save > /etc/sysconfig/iptables
-    when: ansible_distribution_major_version == "6"
