@@ -24,7 +24,8 @@
       permanent: true
       immediate: true
       state: enabled
-    when: ansible_distribution_major_version == "7"
+    when: ansible_distribution_major_version == "7" and
+            not ( security_firewall is defined and not security_firewall )
 
   # There's probably a more elegant way to do this with the 'iptables' module
   - name: Open firewall port (iptables)
